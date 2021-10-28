@@ -1,0 +1,64 @@
+ALGORITHM Dot product
+VAR    
+    n:INTEGER;
+    ps:INTEGER:=0;
+    m : ARRAY_OF type[100][100];
+    k:INTEGER:=0;
+BEGIN
+// lire les tableaux des vectures/////////////////////
+FOR i FROM 0 TO n STEP step  DO
+    FOR j FROM 0 TO n STEP step  DO
+        read(m[i][j]);
+    END_FOR
+END_FOR
+// afficher le tableau des vecteurs //////////////////
+FOR i FROM 0 TO n STEP step  DO
+    FOR j FROM 0 TO n STEP step  DO
+        write(m[i][j]);
+    END_FOR
+END_FOR
+////// en utilisant appel au  procedure ////////////////////
+
+FOR i FROM 0 TO n STEP step  DO
+    dot_product(m[k][i],m[k+1][i],n,ps);
+    IF (ps==0) THEN
+        write("les deux vecteurs sont orthogonaux");
+    ELSE
+        write("les deux vecteurs ne sont pas orthogonaux");
+    END_IF
+    k++;
+END_FOR
+////////////// en utilisant appel au fonction ///////////////
+FOR i FROM 0 TO n STEP step  DO
+    
+    IF (dot_product(m[k][i],m[k+1][i],n)==0) THEN
+        write("les deux vecteurs sont orthogonaux");
+    ELSE
+        write("les deux vecteurs ne sont pas orthogonaux");
+    END_IF
+    k++;
+END_FOR
+
+    
+END
+/////////////////// la fonction qui calcule la produit scalaire //////////////////
+FUNCTION dot_product(v1:array,v2:array,n:INTEGER) : INTEGER
+VAR
+    i:INTEGER;
+    ps:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO n STEP step  DO
+        ps+=v1[i]*v2[i];
+    END_FOR
+    RETURN ps ;
+END
+/////////////////// la procedure qui calcule le produit scalaire //////////////////
+PROCEDURE dot_product(v1:ARRAY,v2:ARRAY,n:INTEGER,var ps:INTEGER)
+VAR
+   i:INTEGER;
+   
+BEGIN
+    FOR i FROM 0 TO n STEP step  DO
+        ps+=v1[i]*v2[i];
+    END_FOR
+END
